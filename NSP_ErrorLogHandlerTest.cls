@@ -1,9 +1,9 @@
 /**
-* Represents test class for NSP_ErrorLogHandler
+* Represents test class for ErrorLogHandler
 */
 
 @isTest(SeeAllData=false)
-public class NSP_ErrorLogHandlerTest {
+public class ErrorLogHandlerTest {
     /**
 * Checks the logSaveResult and LogSaveException
 * @param N/A. 
@@ -22,8 +22,8 @@ public class NSP_ErrorLogHandlerTest {
         }
         //Using database.save result 
         Database.SaveResult[] result = Database.Insert(accountList, false);
-        NSP_ErrorLogHandler.logSaveResult('TestClass','TestMethod',result);
-        NSP_ErrorLogHandler.logSaveException('TestClass','TestMethod','result');
+        ErrorLogHandler.logSaveResult('TestClass','TestMethod',result);
+        ErrorLogHandler.logSaveException('TestClass','TestMethod','result');
         Test.stopTest();
         
     }
