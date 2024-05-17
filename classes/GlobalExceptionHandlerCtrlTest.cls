@@ -3,7 +3,8 @@
 */
 
 @isTest(SeeAllData=false)
-public class ErrorLogHandlerTest {
+public class GlobalExceptionHandlerCtrlTest {
+    public class My1Exception extends Exception {} 
     /**
 * Checks the logSaveResult and LogSaveException
 * @param N/A. 
@@ -22,8 +23,9 @@ public class ErrorLogHandlerTest {
         }
         //Using database.save result 
         Database.SaveResult[] result = Database.Insert(accountList, false);
-        ErrorLogHandler.logSaveResult('TestClass','TestMethod',result);
-        ErrorLogHandler.logSaveException('TestClass','TestMethod','result');
+        //exceptionType,String className,String methodName
+        GlobalExceptionHandlerCtrl.createExceptionLogForSaveResults( result,'DML','GlobalExceptionHandlerCtrlTest','checkTestMehod');
+        GlobalExceptionHandlerCtrl.logSaveException('TestClass',  throw new My1Exception('First exception'));
         Test.stopTest();
         
     }
