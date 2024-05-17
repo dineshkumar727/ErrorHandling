@@ -72,7 +72,26 @@ public with sharing class GlobalExceptionHandlerCtrl {
                     //ex.Running_User__c         = UserInfo.getUserId();
                   if(optional != null){
                     ex.Additional_Details__c      = optional;
-                  }       
+                  }   
+
+                    Map<String, Object> data = new Map<String, Object>{
+                    'Quiddity' =>  Request.getCurrent().getQuiddity(),
+                    /* Limits */
+                    'Callouts' => Limits.getCallouts(),
+                    'CpuTime' => Limits.getCpuTime(),
+                    'DMLRows' => Limits.getDmlRows(),
+                    'DMLStatements' => Limits.getDmlStatements(),
+                    'EmailInvocations' => Limits.getEmailInvocations(),
+                    'FutureCalls' => Limits.getFutureCalls(),
+                    'HeapSize' => Limits.getHeapSize(),
+                    'Queries' => Limits.getQueries(),
+                    'LocatorRows' => Limits.getQueryLocatorRows(),
+                    'QueryRows' => Limits.getQueryRows(),
+                    'QueueableJobs' => Limits.getQueueableJobs(),
+                    'SoslQueries' => Limits.getSoslQueries()
+                  };
+
+                  ex.DebugLog__c = JSON.serializePretty(data);   
             return ex;
         
     }
